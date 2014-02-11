@@ -1,0 +1,8 @@
+#!/bin/sh
+
+cd /home/kenshin/Githubs/blogs/
+git add .
+git commit -a -m "post"
+git push origin gh-pages
+exit
+

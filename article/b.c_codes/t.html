@@ -1,0 +1,31 @@
+#include    <stdio.h>  
+int get_cnum(int x)  
+{  
+    int     count = 0;  
+    int     cp = 10;  
+    while (x/cp)  
+    {  
+       count++;  
+       cp *= 10;      
+    }  
+    return count+1;  
+}  
+int main(void)  
+{  
+    int     x = 147258369;  
+    int k = get_cnum(x);  
+    int     i;  
+    int     cp = 1;  
+    int     rev;  
+    for (i = 1; i < k; i++)  
+        cp *= 10;  
+    printf("/n%d--%d/n", get_cnum(x), cp);        
+    while ((x/cp) && (cp != 0))  
+    {  
+        rev = x / cp;  
+        printf("/n%d-/n",rev);  
+        x   %= cp;  
+        cp  /= 10;  
+    }  
+    return 0;  
+}     

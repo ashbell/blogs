@@ -1,0 +1,40 @@
+<p>最近在翻看C语言的书, 自己也买了一本K&amp;R原版的, K&amp;R的好处在于讲解各种函数的由来和系统接口!</p>
+
+<p>但是中文的C语言则很多是关于一些简单处理, 比如strcpy,strncat,strcat这些函数的实现....</p>
+
+<p>一时心血来潮, 突然想出了如果给出一个整数, 这个整数有很多位(我并不知道它有多大?), 怎么来把它分解出来?</p>
+
+<p>这个虽然简单, 但毕竟是自己一点点想出来的, 留与此地, 方便以后查阅.....</p>
+
+<h1>include    <stdio.h></h1>
+
+<p>int get<em>cnum(int x) <br>
+{ <br>
+    int     count = 0; <br>
+    int     cp = 10; <br>
+    while (x/cp) <br>
+    { <br>
+       count++; <br>
+       cp *= 10; <br>
+    } <br>
+    return count+1; <br>
+} <br>
+int main(void) <br>
+{ <br>
+    int     x = 147258369; <br>
+    int k = get</em>cnum(x); <br>
+    int     i; <br>
+    int     cp = 1; <br>
+    int     rev; <br>
+    for (i = 1; i &lt; k; i++) <br>
+        cp *= 10; <br>
+    printf("/n%d--%d/n", get_cnum(x), cp); <br>
+    while ((x/cp) &amp;&amp; (cp != 0)) <br>
+    { <br>
+        rev = x / cp; <br>
+        printf("/n%d-/n",rev); <br>
+        x   %= cp; <br>
+        cp  /= 10; <br>
+    } <br>
+    return 0; <br>
+}     </p>

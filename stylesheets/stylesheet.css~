@@ -170,13 +170,13 @@ code {
   padding: 0 3px;
 }
 
-pre {
+/*pre {
   padding: 20px;
   background: #fff;
   text-shadow: none;
   overflow: auto;
   border: solid 1px #f2f2f2;
-}
+}*/
 pre code {
 /*  color: #2879d0; */
   color: #000000;

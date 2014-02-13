@@ -19,15 +19,15 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <title>把一个数分解开，个，十，百...</title>
+    <title>love u sometime.</title>
   </head>
 
   <body style="background: white; font-family: Helvetica">
     <header>
       <div class="inner">
-        <h3>post @time: 2011-03-14</h3>
+        <h3>post @time: 2014-02-13</h3>
         <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            数字的分解</h3>
+            love u sometime.</h3>
       </div>
     </header>
 
@@ -37,44 +37,16 @@
 
 
 <p>
-最近在翻看C语言的书, 自己也买了一本K&amp;R原版的, K&amp;R的好处在于讲解各种函数的由来和系统接口!
-但是中文的C语言则很多是关于一些简单处理, 比如strcpy,strncat,strcat这些函数的实现....
-一时心血来潮, 突然想出了如果给出一个整数, 这个整数有很多位(我并不知道它有多大?), 怎么来把它分解出来?
-这个虽然简单, 但毕竟是自己一点点想出来的, 留与此地, 方便以后查阅.....
+佳人如故，岁月悠悠，纵然我有海枯石烂的决心，也无能为力去爱你。多少个日日月月，想着在远方的你，过得还好么？为你把心放入冰窟，从此不再爱别人，就这样，我在暗恋和痛苦中挺了过来。当大学毕业后再次回首相见，我才发现自己是多么幼稚，太多的未知，太多的牵挂，原来只是自己的一厢情愿。现实就是这样，我已经没勇气再去面对昔日朝思暮想的你了。所以把你放在这里，放在心里。记下那段难以忘怀的时光，那段青葱的暗恋。
 </p>
+<img src="../f.blog_images/u1.jpg" alt="love u" />
+<p>这些图片都是从QQ里抓取的，为了不让别人知道，一直没发到网上。</p>
+<img src="../f.blog_images/u2.jpg" alt="love u" />
+<p>考虑了很多，最终我还是决定不和你表白，不想打扰你的生活。当有些话一说出来就以为着某些东西的失去。暗恋也罢，痛苦也罢，希望你结婚的时候不要让我知道。我不想再次为你而彷惶和痛苦。</p>
+</br>
+<p>我不知道在你的世界你有没有出现过我的影子！希望你明天的情人节快乐，有人给你送礼物。</p>
+<p>-----------------------------------------------2014-02-13 于深圳. </p>
 
-<pre class="brush: js;">
-
-#include    <stdio.h>  
-int get_cnum(int x)  
-{  
-	    int     count = 0;  
-	    int     cp = 10;  
-	    while (x/cp) {  
-           count++;  
-           cp *= 10;      
-    	}  
-    	return count+1;  
-}  
-int main(void)  
-{  
-	    int     x = 147258369;  
-	    int k = get_cnum(x);  
-	    int     i;  
-	    int     cp = 1;  
-	    int     rev;  
-	    for (i = 1; i < k; i++)  
-	        cp *= 10;  
-	    printf("\n%d--%d\n", get_cnum(x), cp);        
-	    while ((x/cp) && (cp != 0)) {  
-	        rev = x / cp;  
-	        printf("\n%d-\n",rev);  
-	        x   %= cp;  
-	        cp  /= 10;  
-	    }  
-	    return 0;  
-}     
-</pre>
 
 
         </section>

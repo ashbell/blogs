@@ -51,7 +51,7 @@ body {
   font-size: 15px;
   line-height: 1.5; 
   background: #fafafa url(../images/body-bg.jpg) 0 0 repeat;
-  font-family: 'Helvetica Neue', Helvetica, Arial, serif;
+  font-family: Helvetica, Arial,'Helvetica Neue',  serif;
   font-weight: 400;
   color: #666;
 }
@@ -170,13 +170,13 @@ code {
   padding: 0 3px;
 }
 
-/*pre {
+pre {
   padding: 20px;
   background: #fff;
   text-shadow: none;
   overflow: auto;
   border: solid 1px #f2f2f2;
-}*/
+}
 pre code {
 /*  color: #2879d0; */
   color: #000000;

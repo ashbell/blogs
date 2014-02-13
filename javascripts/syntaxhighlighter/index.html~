@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Hello SyntaxHighlighter</title>
+	<script type="text/javascript" src="scripts/shCore.js"></script>
+	<script type="text/javascript" src="scripts/shBrushJScript.js"></script>
+	<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css"/>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+<body style="background: white; font-family: Helvetica">
+
+<h1>Hello SyntaxHighlighter</h1>
+<pre class="brush: js;">
+#include      <stdio.h>
+#include      <asf.h>
+int get_cnum(int x)  
+{  
+	    int     count = 0;  
+	    int     cp = 10;  
+	    while (x/cp) {  
+	       count++;  
+            cp *= 10;      
+    	}  
+    	return count+1;  
+}  
+int main(void)  
+{  
+	    int     x = 147258369;  
+	    int k = get_cnum(x);  
+	    int     i;  
+	    int     cp = 1;  
+	    int     rev;  
+	    for (i = 1; i < k; i++)  
+	        cp *= 10;  
+	    printf("\n%d--%d\n", get_cnum(x), cp);        
+	    while ((x/cp) && (cp != 0)) {  
+	        rev = x / cp;  
+	        printf("\n%d-\n",rev);  
+	        x   %= cp;  
+	        cp  /= 10;  
+	    }  
+	    return 0;  
+}     
+</pre>
+
+</html>

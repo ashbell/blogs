@@ -1,7 +1,16 @@
- 心德维拉rtsp://vod.dlrtvu.edu.cn/movie/shequ/maojincao/01.rmvb
+DESTRUCTION
+Translations from 有道词典
+n. 破坏，毁灭；摧毁
+ 
+
+心德维拉rtsp://vod.dlrtvu.edu.cn/movie/shequ/maojincao/01.rmvb
 
  Journey of Honour
 
+navigate
+Translations from 有道词典
+vt. 驾驶，操纵；使通过；航行于
+vi. 航行，航空
 
 
 ls | grep Lecture | xargs -i rm -rvf {}

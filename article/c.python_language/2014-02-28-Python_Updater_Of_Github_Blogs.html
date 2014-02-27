@@ -1,3 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/print.css" media="print" />
+	<script type="text/javascript" src="../../javascripts/syntaxhighlighter/scripts/shCore.js"></script>
+	<script type="text/javascript" src="../../javascripts/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+	<link type="text/css" rel="stylesheet" href="../../javascripts/syntaxhighlighter/styles/shCoreDefault.css"/>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Python Blog Updater</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h2>Github_Blog Updater by Python </h2>
+		<font color="#000000"><h3>Post @ 2014-02-28</h3></font>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+<ul>
+	<li> No Document! Just For me. If U Understand the Code, Help yourself! </li>
+	<li> Linux Bash Scripts,[Create the file wich provider to Updater] </li>
+<pre  class="brush: js;">
+
+#! /bin/bash
+
+tree -R ./article/ -I "images" -P "*.html" > tree
+find ./article/ -name "*.html" | sort > path
+python ./pagegen.py
+</pre>
+	<li> Python Language [Updater] </li>
+</ul>
+<pre class="brush: js;">
 #! /usr/bin/python
 #-*-coding:utf-8-*-
 
@@ -35,7 +82,7 @@ index_start = '''
         <h2>你不努力，谁都给不了你想要的生活</h2>
        <font color="#3B0B0B"> <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		&nbsp;&nbsp;&nbsp;Ashbell[2014.2.11,@Shenzhen]</h3> </font>
-        <a href="https://github.com/ashbell/blogs" class="button"><small>View project on</small>GitHub</a>
+<a href="../.None"  class="button">
       </div>
     </header>
 
@@ -62,11 +109,11 @@ index_end = '''
         </section>
 
         <aside id="sidebar">
-          <a href="https://github.com/ashbell/blogs/zipball/master" class="button">
+<a href="../.None"  class="button">
             <small>Download</small>
             .zip file
           </a>
-          <a href="https://github.com/ashbell/blogs/tarball/master" class="button">
+          </a>
             <small>Download</small>
             .tar.gz file
           </a>
@@ -195,12 +242,24 @@ Fp_OtIndex.close()
 # ok, finish the index page !
 
 
+</pre>
 
 
 
+        </section>
 
+               <aside id="sidebar">
+               <aside id="sidebar">
+            <small>上一篇</small>
+          </a>
+          </a>
+            <small>下一篇</small>
+          </a>
 
+        </aside>
+      </div>
+    </div>
 
-
-
-
+  
+  </body>
+</html>

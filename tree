@@ -1,19 +1,16 @@
 ./article/
 ├── a.bash_script
-│   ├── 2014-02-24-0.html
-│   └── 2014-02-24-index.html
 ├── b.c_codes
-│   └── 2011-03-14-把一个整数分解开.html
 ├── c.python_language
-│   └── 2014-02-24-0.html
+│   └── 2014-02-28-Python_Updater_Of_Github_Blogs.html
 ├── d.reading_notes
-│   ├── 2011-03-22-读俞敏洪老师的文章，坚持下去{给我勇气}.html
-│   ├── 2011-04-09-影响力_短缺.html
-│   └── 2014-02-23-老师的话,就一句.html
+│   ├── 2014-02-28-俞敏洪老师[坚持下去].html
+│   ├── 2014-02-28-影响力_短缺.html
+│   └── 2014-02-28-被记下的师语.html
 ├── e.soulful_love
-│   └── 2014-02-13-u_love.html
+│   └── 2014-02-28-关于你的.html
 ├── f.blog_images
 └── z.temporary
-    └── 2014-02-12-Tmp_notes.html
+    └── 2014-02-28-----Temporary_Files_Notes.html
 
-7 directories, 9 files
+7 directories, 6 files

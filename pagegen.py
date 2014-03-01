@@ -181,7 +181,7 @@ for tl in lines:
 					fp.write('%s%s' % (tmp, os.linesep))  
 				f.close()
 				fp.close()
-			        print "\tDelete : ", Lque_hyperlk[i],"\tUpdate finished. "
+			        print '%s%s%20s' % ("\tDelete: ", Lque_hyperlk[i],"Update finished.")
 				os.unlink(Lque_hyperlk[i])
 				os.rename('outfile', Lque_hyperlk[i])
 		Lque_hyperlk = [] 

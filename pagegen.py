@@ -150,7 +150,7 @@ for tl in lines:
 		# Okay, Now the ARTICLE_PATH AND CATALOG_DIR_PATH is done. 
 		# Process the Prevage and Next_page. Auto insert file path in artciles.
 		if idx > 0: # It's no empty directory.
-			Lque_hyperlk.append('None') # for [0] [1] `[2]
+			Lque_hyperlk.append('Oops.html') # for [0] [1] `[2]
 			for i in range(1, idx + 1):
 				f   = open(Lque_hyperlk[i], "r")
 				fp  = open('outfile', "w")
@@ -185,7 +185,7 @@ for tl in lines:
 				os.unlink(Lque_hyperlk[i])
 				os.rename('outfile', Lque_hyperlk[i])
 		Lque_hyperlk = [] 
-		Lque_hyperlk.append('None') # for `[0] [1] [2]
+		Lque_hyperlk.append('Oops.html') # for `[0] [1] [2]
 		idx = 0
 
 Fp_tree.close()

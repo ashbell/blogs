@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/print.css" media="print" />
+	<script type="text/javascript" src="../../javascripts/syntaxhighlighter/scripts/shCore.js"></script>
+	<script type="text/javascript" src="../../javascripts/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+	<link type="text/css" rel="stylesheet" href="../../javascripts/syntaxhighlighter/styles/shCoreDefault.css"/>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+    <!--[if lt IE 9]>
+   <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Counter digit's appearence</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h2>counter of digits numbers </h2>
+		<font color="#000000"><h3>Post @ 2014-03-29</h3></font>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+<p>这个是在程序员面试100题里面的一道题，题意大致是： 给你一个正整数，计算 1  到该数之间 1 出现了多少次。比如给你12,那么该序列为 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12. 在其中 1 总共(1, 10, 11, 12) 出现了5. 开始碰到，我想到的是用高中的排列组合，先计算出所给的数字是几位数，然后对应每位为1时候的情况计算，但是想了半天，用手算都没办法算出来，更别说用计算机去计算了，规则太过于复杂。于是便想到了python去处理，因为python中对字符的操作简便，只需要转化一下即可，随后还是不甘心，想着用C难道就不行了？果然，被我想到了用文件操作来代替数学计算流程的方法。于是写了两个版本的方法，python和C。并对结果做了比较。</p>
+</br>
+<ul><li> <h3>C版本的如下:</h3></li>
+<pre  class="brush: js;">
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+
+
+int main( int argc, char *argv[] )
+{
+	    int i, ret, end, rd;
+	    FILE *fp;
+	    int cnt[10] = {0};
+	    printf ("Input the numbers-> end: \n");
+	    if (ret = fscanf(stdin, "%d",&end) != 1)
+	      {
+		printf ("fscanf error!\n");
+		exit (0);
+	      }
+	    ++end;
+	    if (!(fp = fopen("./tmpfile", "wb+")))
+	      {
+	        printf ("Error when open tmpfile\n");
+		exit (0);
+	      }
+	    for (i = 1; i < end; i++)
+  	      {
+		if ((ret = fprintf(fp, "%d", i)) < 0)     
+		  {
+		    printf ("Error fprintf!\n");
+		    exit (0);
+		  }
+	      }
+	    fclose (fp);
+	    if (!(fp = fopen("./tmpfile", "r")))
+	      {
+	        printf ("Error when open tmpfile\n");
+		exit (0);
+	      }
+	    
+	    while ((ret = fscanf(fp, "%c", &rd)) != EOF) 
+              {
+		char idx = rd - '0';
+	        cnt[idx]++;	
+	      }
+	    fclose (fp);
+	    for (i = 0; i < 10; i++ )
+	      {
+		printf ("%d ----> %d\ttimes\n", i, cnt[i]);
+	      }
+	    return 0;
+
+}
+</pre>
+<li><h3>这个是Python版本:</h3></li>
+</br>
+<pre  class="brush:js;">
+
+#! /usr/bin/python
+
+#end = int (raw_input ('Enter number: '))
+end = input ('Enter number: ')
+print
+end = end + 1
+a = '' 
+cnt = { '0':0, '1':0, '2':0, '3':0, '4':0, \
+        '5':0, '6':0, '7':0, '8':0, '9':0
+      }
+for i in range (1, end ):
+	a = a + str(i)
+
+for i in a:
+	cnt[i] += 1
+
+for i in cnt:
+	print '%s---->%s\ttimes' % ( i, cnt[i] )
+
+# 字典的操作还真是有点难懂!
+</pre>
+</br>
+<li><h3>随后对两个程序的结果进行比较，使用shell来操作:</h3></li>
+</br>
+<pre class="brush:js;">
+echo xxx | ./a.out | sort
+
+echo xxx | ./cnt1.py | sort
+</pre>
+<img src="../images/count1.png" alt="C和Python统计的比较结果" />
+
+<p>--------------------End--------------------</p>
+
+      </div>
+    </div>
+
+  
+  </body>
+</html>

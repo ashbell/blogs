@@ -88,6 +88,7 @@ index_end = '''
 # Two files : tree, path. created by shell cmd: tree, find | sort
 #================================================================
 reg = '[0-9]{4}-[0-9]{2}-[0-9]{2}'  #use to match the xxxx-xx-xx-article_name.html files.
+dirnamereg = '[a-z]{1}\..*$'
 Ltree = []
 Lpath = []
 idxpath = 0
@@ -106,24 +107,36 @@ Fp_OtIndex.write(index_start)
 
 idx = 0
 Lque_hyperlk.append('None')
+date = ''
+theme = ''
+prefix = ''
 
 Fp_tree = open('./tree', 'r')
 lines = Fp_tree.readlines()
+
 for tl in lines:
 	m = re.search(reg, tl) 
 	tl = str(tl)
+	pos = 0
 	if m is not None: # We find the article html files' path.
-		# The HTML in Browser look like this:
-		# │   └──    2014-02-24  >>>> THE_ARTICLE_THEME
-		#--tl[:18]---date_format------article_theme-----  
-		# OK,we convert it  to HTML code:
-		# │   ├── 2014-02-24  >>>> <font color="#0000c6"><a href="ARTICLE_PATH">THEMES</a></font>
-
-		date_format = '%s%s' % (tl[18:28], '  >>>> ')
+		ln = len (tl)
+		prefix_ok = True
+		for c in range(0, ln):
+			if tl[c].isdigit():
+				prefix = tl[:c-1]
+				break
+		for c in range(0, ln):
+			if tl[c] == '-':
+				pos = pos + 1
+				if pos == 3:
+					date  = tl[c-10 : c] #Y? not c-1
+					theme = tl[c+1:-6]
+					break
+				
+		date_format = '%s%s' % (date, '  >>>> ')
 		filepath = str(Lpath[idxpath]).replace('\n', '') # do not use replace('\n', '\0'), error.
-		theme = tl[29:-6]
 
-		HtmlPathCode = '%s%s%s%s%s%s%s' % ( tl[:18], date_format,\
+		HtmlPathCode = '%s%s%s%s%s%s%s' % (prefix, date_format,\
 			       '<font color="#0000c6"><a href="', filepath,\
 			       '">', theme, '</a></font>' )
 		
@@ -136,7 +149,7 @@ for tl in lines:
 		if cmp('./article/\n', tl) == 0: #Oh, fuck, forget the '\n'
 						 #cmp('./article/, tl) never equal.
 			DirPathCode = tl.replace('\n','')
-		else:
+		elif (re.search(dirnamereg, tl)):
 			# ├── c.python_language
 			# We change the color of catalog directory.
 			# ├──    <font color="#0000cd", style="font-size:100%">c.python_language</font>
@@ -145,12 +158,14 @@ for tl in lines:
 			dir_name = str(tl[10:]).replace('\n', '')
 			DirPathCode = '%s%s%s%s' % (tl[:10], '<font color="#0000cd", style="font-size:100%">', \
 					dir_name, '</font>')
+		else:
+			DirPathCode = tl.replace('\n', '')
 		Fp_OtIndex.write('%s%s' % (DirPathCode, os.linesep)) #Fuck the os.linesep.
 
 		# Okay, Now the ARTICLE_PATH AND CATALOG_DIR_PATH is done. 
 		# Process the Prevage and Next_page. Auto insert file path in artciles.
 		if idx > 0: # It's no empty directory.
-			Lque_hyperlk.append('Oops.html') # for [0] [1] `[2]
+			Lque_hyperlk.append('./404.html') # for [0] [1] `[2]
 			for i in range(1, idx + 1):
 				f   = open(Lque_hyperlk[i], "r")
 				fp  = open('outfile', "w")
@@ -185,7 +200,7 @@ for tl in lines:
 				os.unlink(Lque_hyperlk[i])
 				os.rename('outfile', Lque_hyperlk[i])
 		Lque_hyperlk = [] 
-		Lque_hyperlk.append('Oops.html') # for `[0] [1] [2]
+		Lque_hyperlk.append('./404.html') # for `[0] [1] [2]  Oops.html...SHIT!! add './'
 		idx = 0
 
 Fp_tree.close()
@@ -193,10 +208,6 @@ Fp_OtIndex.write(index_end)
 Fp_OtIndex.close()
 
 # ok, finish the index page !
-
-
-
-
 
 
 

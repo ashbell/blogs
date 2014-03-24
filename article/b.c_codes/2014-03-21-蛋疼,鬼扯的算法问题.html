@@ -75,8 +75,141 @@ int main (int argc, char *argv[])
 <img src="../images/outsn2.png" alt="输出和满足条件的两个数字">
 </br>
 
-<li><h3>题目2:
+<li><h3>题目2:反转一个字符串，Python && C </h3></li>
+<p> &nbsp;&nbsp; 将一个字符串按单词顺序翻转输出。比如输入: I am a student. --> studen. a am I. 这个是最让我无语的一个，原因是我在用C的是有装逼了，用了K&R C上面的代码，结果出问题了，然后就对着代码看啊想啊，没结果，无奈了，最后拿起GDB来开刀了，才知道自己装逼的下场，我本来是想给字符串赋值, 结果却把自己要保存的字符串全部给截断了，用的0. 用了这样的语句: <u>while ((*s++ = *t++) != '\0');</u>
+这句在复制字符串的时候没问题，而且也很简洁， 先赋值再判断，如果*t == 0; 那么， *s的值也已经有了'\0'了,但是这并不是我的程序所期望的，我是用GDB调试的时候，才发现，每次都是复制完最后一个单词后，s串就被截断了，于是把程序改了一下: </p>
+<pre class="brush:js;">
+	while (*t)
+	  {
+		*s++ = *t++;
+	  }
+</pre>
+ <p>这个和上面的那句最大的不同就是当到了 *t == '\0'的时候，前面的代码能保证*s也能获得'\0', 后面的就不会.也就是这个问题折腾了我好久.<strong>总结: 当出现问题后，在排除代码的逻辑错误之后，问题还是没搞定，那别犹豫了，拿起GDB吧。</strong> </p>
+ <li><h3>第一个版本的代码，简直无法直视:</h3></li>
+<pre class="brush:js;">
 
+#include <stdio.h>
+#include <string.h>
+#define MAX 100
+
+int main()
+{
+	char str[MAX];
+	char out[MAX];
+	fgets(str, MAX, stdin); /* end by \n\0 */
+	printf("str is: %s len is: %d\n", str, strlen(str));
+	char *start = str;
+	char *end;
+	end = str + (strlen(str) - 2);
+	char *right;
+	char *ptr = out;
+	char *p;
+	right = end;
+	printf("%p -> end   %p -> start\n", end, start );
+	while((end--) >= start) {
+		if (*end == ' ') {
+			printf("Find it @: %p\n", end);
+			p = end + 1;
+			while(p <= right) {
+				*ptr++ = *p++;
+			}
+			right = end - 1;
+			*ptr++ = *end;
+		} 
+	}
+	p = right;
+	while(p >= start) {
+		*ptr++ = *start++;
+	}
+	*ptr = 0;
+	printf("Out: %s\n", out);
+	
+	return 0;
+}
+
+</pre>
+<li><h3>第二个版本</h3></li>
+<pre class="brush:js">
+
+#include <stdio.h>
+#include <string.h>
+#define MAX 1024
+
+int main()
+{
+	char str[MAX+1];
+	char out[MAX+1];
+	char *oo = out;
+	while (fgets(str, MAX, stdin) != NULL) /* end by \n\0 */
+	  {
+		/* fgets auto add \n\0 to tail of string */
+		printf("str is: %s len is: %d\n", str, strlen(str)); 
+		char *p = str + strlen(str) - 1; /* '\n' */
+		*p-- = '\0'; /* now \n become  \0' , p pointer the last char*/
+		while (p >= str)
+		  {
+			if (*p == ' ')
+			  {
+				*p = '\0';
+				char *next = p + 1;
+				while (*next!= '\0')
+					*oo++ = *next++;
+				*oo++ = ' ';
+			  }
+			p--;
+		  }
+		p = str;
+		while (*p != '\0')
+			*oo++ = *p++;
+		*oo++ = ' ';
+		*oo = '\0';
+		oo = out;
+		printf ("%s\n", oo);
+	  }
+
+	return 0;
+}
+</pre>
+<p>&nbsp;&nbsp;函数fgets() 会自动在获得串之后加上'\0\n', 所以操作的时候要非常注意边界问题,开始没注意,只是减去了1,p指向了'\0',结果程序一点输出都没有.</p>
+<li><h3>Python 版本的, 是在上班的时候用Python做的，没有用到Pytohn里面的那些函数，可以说这是C格式的Python吧，并没有体现出Python的特性出来，(自己现在也没那个水平去写出那种可以体现出一种语言优点的程序)</h3></li>
+<pre class="brush:js;">
+#! /usr/bin/python  ## if on ms windows, this is unnecessary.
+
+ostr = input('Enter string: ')
+alist = []
+out = []
+
+lenght = len (ostr)
+
+for i in range(0, lenght):
+	if ostr[i] == ' ':
+		alist.append('\0')
+	else:
+		alist.append(ostr[i])
+alist.append('\0')
+#print (alist)
+		
+i = lenght - 1
+while (i >= 0):
+	if alist[i] == '\0':
+		nx = i + 1
+		while (alist[nx] != '\0'):
+			out.append(alist[nx])
+			nx += 1
+		out.append(' ')
+	i = i -1
+i = 0
+while (alist[i] != '\0'):
+	out.append(alist[i])
+	i = i + 1
+
+ooo = ''
+for i in out:
+	ooo = ooo + i
+print (ooo)
+
+</pre>
+<li><h3>未完待续</h3></li>
 </ul>
 
 

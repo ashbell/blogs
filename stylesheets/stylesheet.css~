@@ -50,8 +50,8 @@ table {
 body {
   font-size: 15px;
   line-height: 1.5; 
-  background: #fafafa url(../images/body-bg.jpg) 0 0 repeat; 
- /* background: #000000 url(../images/templatemo_content_bg.jpg) top center no-repeat; */
+/*  background: #fafafa url(../images/body-bg.jpg) 0 0 repeat; */
+  background: #000000 url(../images/templatemo_content_bg.jpg) top center no-repeat;
   font-family: Helvetica, Arial,'Helvetica Neue',  serif;
   font-weight: 400;
   color: #666;

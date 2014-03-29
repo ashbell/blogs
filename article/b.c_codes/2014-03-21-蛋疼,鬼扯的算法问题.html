@@ -86,7 +86,7 @@ int main (int argc, char *argv[])
 </pre>
  <p>这个和上面的那句最大的不同就是当到了 *t == '\0'的时候，前面的代码能保证*s也能获得'\0', 后面的就不会.也就是这个问题折腾了我好久.<strong>总结: 当出现问题后，在排除代码的逻辑错误之后，问题还是没搞定，那别犹豫了，拿起GDB吧。</strong> </p>
  <li><h3>第一个版本的代码，简直无法直视:</h3></li>
-<pre class="brush:js;">
+<pre class="brush: js;">
 
 #include <stdio.h>
 #include <string.h>
@@ -129,7 +129,7 @@ int main()
 
 </pre>
 <li><h3>第二个版本</h3></li>
-<pre class="brush:js">
+<pre class="brush: js;">
 
 #include <stdio.h>
 #include <string.h>
@@ -172,7 +172,7 @@ int main()
 </pre>
 <p>&nbsp;&nbsp;函数fgets() 会自动在获得串之后加上'\0\n', 所以操作的时候要非常注意边界问题,开始没注意,只是减去了1,p指向了'\0',结果程序一点输出都没有.</p>
 <li><h3>Python 版本的, 是在上班的时候用Python做的，没有用到Pytohn里面的那些函数，可以说这是C格式的Python吧，并没有体现出Python的特性出来，(自己现在也没那个水平去写出那种可以体现出一种语言优点的程序)</h3></li>
-<pre class="brush:js;">
+<pre class="brush: js;">
 #! /usr/bin/python  ## if on ms windows, this is unnecessary.
 
 ostr = input('Enter string: ')
@@ -216,10 +216,10 @@ print (ooo)
   </section>
 
         <aside id="sidebar">
-<a href="../../article/b.c_codes/2014-03-19-Count-appearances-of-digit-whin-given-number.html"  class="button">
+<a href="../../article/b.c_codes/2014-03-19-Count-appearances-of-digit-whin-given-number.html"  class="button"\> 
             <small>上一篇</small>
           </a>
-<a href="../../404.html"  class="button">
+<a href="../../404.html"  class="button"> 
             <small>下一篇</small>
           </a>
 

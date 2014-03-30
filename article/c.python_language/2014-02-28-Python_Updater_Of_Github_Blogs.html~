@@ -1,3 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../../stylesheets/print.css" media="print" />
+	<script type="text/javascript" src="../../javascripts/syntaxhighlighter/scripts/shCore.js"></script>
+	<script type="text/javascript" src="../../javascripts/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+	<script type="text/javascript" src="../../javascripts/syntaxhighlighter/scripts/shBrushCpp.js"></script>
+	<script type="text/javascript" src="../../javascripts/syntaxhighlighter/scripts/shBrushPython.js"></script>
+	<script type="text/javascript" src="../../javascripts/syntaxhighlighter/scripts/shBrushBash.js"></script>
+	<link type="text/css" rel="stylesheet" href="../../javascripts/syntaxhighlighter/styles/shCoreDefault.css"/>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Python Blog Updater</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h2>Github_Blog Updater by Python </h2>
+		<font color="#000000"><h3>Post @ 2014-02-28</h3></font>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+<ul>
+	<li> 这个是一个没有任何文档的工具,我自己用的，生成一个树形的Blog目录，类似于Linux下的tree命令</li>
+	<li> Linux Bash Scripts,[Create the file wich provider to Updater] </li>
+	<li> 2014-03-30: 将代码重新写, 更新了主页的模板，使用了一些变量来代替操作 </li>
+<pre  class="brush: bash;">
+
+#! /bin/bash
+
+tree -R ./article/ -I "images" -P "*.html" > tree
+find ./article/ -name "*.html" | sort > path
+
+# 首先去掉上次留下的超链接，因为每次添加文章后，超链接有改动，我把它全部更新.
+find ./article/ -name "*.html" | xargs -I {} \
+		 sed -ri ':1;N;$!b1;s/(<!--++PREVPAGE-->).*(<!--PRE_END-->)/\1\n\2/' {}
+<a href="../../404.html"  class="button"> 
+<a href="../../404.html"  class="button"> 
+<a href="../../404.html"  class="button"> 
+<a href="../../404.html"  class="button"> 
+
+find ./article/ -name "*.html" | xargs -I {} \
+		 sed -ri ':1;N;$!b1;s/(<!--++NEXTPAGE-->).*(<!--NEXT_END-->)/\1\n\2/' {}
+<a href="../../404.html"  class="button"> 
+<a href="../../404.html"  class="button"> 
+<a href="../../404.html"  class="button"> 
+<a href="../../404.html"  class="button"> 
+
+# 去掉主页的TREE_LIST之间的内容
+sed -ri ':1;N;$!b1;s/(<!--++TREE_LIST-->).*(<!--++TREE_END-->)/\1\n\2/' ./index.html 
+python ./pagegen.py ./index.html
+rm tree
+rm path
+
+</pre>
+<h3>Python code</h3>
+<pre class="brush: python;">
+
 #! /usr/bin/python
 #-*-coding:utf-8-*-
 
@@ -94,7 +166,7 @@ def write_tree_list( index_file ):
 	fp.close()
 	tree_code = []
 	for l in lines:
-		if re.search('\TREE_LIST', l):
+		if re.search('---\TREE_LIST', l):
 			tree_code.append(l)
 			tree_code.append( '%s%s' % ("<pre>", os.linesep) )
 			tree_list = get_tree_list()
@@ -146,11 +218,11 @@ def update_link( ):
 						fp.close()
 						for l in lines:
 							l = str(l).replace('\n', '')
-							if re.search( 'NEXTPAGE', l ): 
+							if re.search( '---\NEX-TPAGE', l ): 
 								new_html.append( '%s%s' % ( l, os.linesep) )
 								html = '%s%s%s' % ("<a href=\"../.", 
 										link[ c+1 ], "\"  class=\"button\"> " )
-							elif re.search('PREVPAGE', l ):
+							elif re.search('----\PRE-VPAGE', l ):
 								new_html.append('%s%s' % ( l, os.linesep) )
 								html = '%s%s%s' % ("<a href=\"../.", 
 										link[ c-1 ], "\"  class=\"button\"> " )
@@ -172,9 +244,24 @@ print 'Generate Index file: [ %s ] OK! Have a Nice Day!' % sys.argv[1]
 
 # ok, finish the index page !
 
+</pre>
+		</section>
+		<aside id="sidebar">
+<!--PREVPAGE-->
+<a href="../../404.html"  class="button"> 
+<!--PRE_END--> 
+            <small>上一篇</small>
+          </a>
+<!--NEXTPAGE-->
+<a href="../../404.html"  class="button"> 
+<!--NEXT_END-->
+            <small>下一篇</small>
+          </a>
 
+        </aside>
+      </div>
+    </div>
 
-
-
-
-
+  
+  </body>
+</html>

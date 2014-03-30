@@ -219,14 +219,10 @@ print (ooo)
   </section>
 
         <aside id="sidebar">
-<!--PREVPAGE-->
-<a href="../../article/b.c_codes/2014-03-19-Count-appearances-of-digit-whin-given-number.html"  class="button"> 
-<!--PRE_END-->
+<a href="../../article/b.c_codes/2014-03-19-Count-appearances-of-digit-whin-given-number.html"  class="button"\> 
             <small>上一篇</small>
           </a>
-<!--NEXTPAGE-->
 <a href="../../404.html"  class="button"> 
-<!--NEXT_END--> 
             <small>下一篇</small>
           </a>
 

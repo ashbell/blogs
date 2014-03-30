@@ -38,14 +38,10 @@
   </section>
 
         <aside id="sidebar">
-<!--PREVPAGE-->
-<a href="../../404.html"  class="button"> 
-<!--PRE_END--> 
+<a href="../../404.html"  class="button"\> 
             <small>上一篇</small>
           </a>
-<!--NEXTPAGE-->
 <a href="../../404.html"  class="button"> 
-<!--NEXT_END--> 
             <small>下一篇</small>
           </a>
 

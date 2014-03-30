@@ -128,15 +128,11 @@ echo xxx | ./cnt1.py | sort
 	</section>
 
 	<aside id="sidebar">
-<!--PREVPAGE-->
-<a href="../../404.html"  class="button"> 
-<!--PRE_END--> 
+<a href="../../404.html"  class="button"\> 
 	<small>上一篇</small>
 	</a>
 
-<!--NEXTPAGE-->
 <a href="../../article/b.c_codes/2014-03-21-蛋疼,鬼扯的算法问题.html"  class="button"> 
-<!--NEXT_END-->
 	<small>下一篇</small>
 	</a>
 	</aside>

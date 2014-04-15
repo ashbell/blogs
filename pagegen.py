@@ -94,7 +94,7 @@ def write_tree_list( index_file ):
 	fp.close()
 	tree_code = []
 	for l in lines:
-		if re.search('\TREE_LIST', l):
+		if re.search('TREE_LIST', l):
 			tree_code.append(l)
 			tree_code.append( '%s%s' % ("<pre>", os.linesep) )
 			tree_list = get_tree_list()
